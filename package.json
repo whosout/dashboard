@@ -1,0 +1,17 @@
+{
+	"name": "whosout-dashboard",
+	"version": "0.0.0",
+	"description": "",
+	"type": "module",
+	"scripts": {
+		"prettier": "prettier .",
+		"format:check": "pnpm run prettier --check",
+		"format:write": "pnpm run prettier --write"
+	},
+	"keywords": [],
+	"author": "Nick S. <modexezy@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"prettier": "^2.8.3"
+	}
+}
