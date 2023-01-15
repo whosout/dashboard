@@ -2,3 +2,4 @@ dist/
 node_modules/
 .eslintrc.cjs
 .prettierrc.cjs
+webpack.config.js
