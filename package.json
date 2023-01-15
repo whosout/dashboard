@@ -4,6 +4,9 @@
 	"description": "",
 	"type": "module",
 	"scripts": {
+		"eslint": "eslint src --ext .cts,.mts,.ts,.tsx",
+		"lint": "pnpm run eslint",
+		"lint:fix": "pnpm run eslint --fix",
 		"prettier": "prettier .",
 		"format:check": "pnpm run prettier --check",
 		"format:write": "pnpm run prettier --write"
@@ -12,6 +15,13 @@
 	"author": "Nick S. <modexezy@gmail.com>",
 	"license": "MIT",
 	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.48.1",
+		"@typescript-eslint/parser": "^5.48.1",
+		"eslint": "^8.32.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-react": "^7.32.0",
+		"eslint-plugin-react-hooks": "^4.6.0",
 		"prettier": "^2.8.3",
 		"typescript": "^4.9.4"
 	}

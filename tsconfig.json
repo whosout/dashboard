@@ -9,7 +9,6 @@
 		"module": "ESNext",
 		"moduleResolution": "NodeNext",
 		"baseUrl": "./src",
-		"resolveJsonModule": true,
 
 		"noEmit": true,
 
