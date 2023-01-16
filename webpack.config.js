@@ -171,7 +171,9 @@ export default function (_, argv) {
 								}),
 								{
 									loader: resolveModule('css-loader'),
-									options: {},
+									options: {
+										importLoaders: 1,
+									},
 								},
 								{
 									loader: resolveModule('postcss-loader'),
