@@ -4,6 +4,7 @@ import { createRequire } from 'node:module'
 import webpack from 'webpack'
 
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
@@ -160,6 +161,23 @@ export default function (_, argv) {
 						{
 							test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
 							type: 'asset',
+						},
+						{
+							test: /(\.module)?\.css$/,
+							use: [
+								resolveOptionsByEnvironment({
+									production: MiniCssExtractPlugin.loader,
+									development: resolveModule('style-loader'),
+								}),
+								{
+									loader: resolveModule('css-loader'),
+									options: {},
+								},
+								{
+									loader: resolveModule('postcss-loader'),
+									options: {},
+								},
+							],
 						},
 						{
 							test: /\.(c|m)?tsx?$/,
