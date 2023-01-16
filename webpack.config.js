@@ -117,6 +117,8 @@ export default function (_, argv) {
 		},
 	})
 
+	const miniCssExtractPlugin = new MiniCssExtractPlugin()
+
 	const reactRefreshPlugin = new ReactRefreshWebpackPlugin()
 
 	const tsconfigPathsPlugin = new TsconfigPathsPlugin({
@@ -125,7 +127,7 @@ export default function (_, argv) {
 
 	const plugins = [htmlPlugin, environmentPlugin, forkTsCheckerPlugin].concat(
 		resolveOptionsByEnvironment({
-			production: [],
+			production: [miniCssExtractPlugin],
 			development: [reactRefreshPlugin],
 		}),
 	)
@@ -166,8 +168,14 @@ export default function (_, argv) {
 							test: /(\.module)?\.css$/,
 							use: [
 								resolveOptionsByEnvironment({
-									production: MiniCssExtractPlugin.loader,
-									development: resolveModule('style-loader'),
+									production: {
+										loader: MiniCssExtractPlugin.loader,
+										options: {},
+									},
+									development: {
+										loader: resolveModule('style-loader'),
+										options: {},
+									},
 								}),
 								{
 									loader: resolveModule('css-loader'),
