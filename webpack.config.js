@@ -82,6 +82,28 @@ export default function (_, argv) {
 		},
 	}
 
+	const miniCssExtractLoader = {
+		loader: MiniCssExtractPlugin.loader,
+		options: {},
+	}
+
+	const styleLoader = {
+		loader: resolveModule('style-loader'),
+		options: {},
+	}
+
+	const cssLoader = {
+		loader: resolveModule('css-loader'),
+		options: {
+			importLoaders: 1,
+		},
+	}
+
+	const postcssLoader = {
+		loader: resolveModule('postcss-loader'),
+		options: {},
+	}
+
 	/**
 	 * Plugins
 	 */
@@ -168,25 +190,11 @@ export default function (_, argv) {
 							test: /(\.module)?\.css$/,
 							use: [
 								resolveOptionsByEnvironment({
-									production: {
-										loader: MiniCssExtractPlugin.loader,
-										options: {},
-									},
-									development: {
-										loader: resolveModule('style-loader'),
-										options: {},
-									},
+									production: miniCssExtractLoader,
+									development: styleLoader,
 								}),
-								{
-									loader: resolveModule('css-loader'),
-									options: {
-										importLoaders: 1,
-									},
-								},
-								{
-									loader: resolveModule('postcss-loader'),
-									options: {},
-								},
+								cssLoader,
+								postcssLoader,
 							],
 						},
 						{
